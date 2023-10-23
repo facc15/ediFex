@@ -1,0 +1,78 @@
+<ion-header *ngIf="!this.spinner">
+
+  <ion-toolbar color="primary">
+
+ <h2 class="title" >EdiFex</h2>
+  </ion-toolbar>
+</ion-header>
+
+<app-spinner  [spinner]="this.spinner" *ngIf="this.spinner"></app-spinner>
+  <ion-content [fullscreen]="true" color="primary" padding *ngIf="!this.spinner">
+
+<div class="naranja">
+  <br><br>
+    <div class="contenedor">
+    <img src="../../../assets/edificio.png" width="70px" height="60px" alt="">
+    </div>
+  <br>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+
+            <ion-item>
+              <ion-input  class="miInput" name="email" type="email" formControlName="email" placeholder="Ingrese su correo" ngModel required></ion-input>
+            </ion-item>  
+              <div  class="alert-danger">
+                <div class="contAlert" *ngIf="this.form.get('email')?.hasError('required') && this.form.get('email')?.touched">
+                        <span  class="errorMessages" *ngIf="this.form.get('email')?.hasError('required') && this.form.get('email')?.touched" >
+                      El correo es requerido
+                        </span>
+                        
+                </div>      
+                <div class="contAlert">
+                  
+                        <span  class="errorMessages" *ngIf="this.form.get('email')?.hasError('email')">
+                          El correo es inválido
+                          </span>
+                </div>           
+              </div>
+
+               
+
+            <br>
+              <ion-item>
+                <ion-input class="miInput" name="password" type="password" formControlName="password" placeholder="Ingrese contraseña" ngModel required></ion-input>
+              </ion-item>
+            <div class="alert-danger" >
+              <span class="errorMessages" *ngIf="this.form.get('password')?.hasError('required') && this.form.get('password')?.touched" >
+              La contraseña es requerida
+               </span>  
+              </div>
+     
+          <div padding>
+
+            <ion-button class="btnfos btnfos-3" size="large" type="submit" [disabled]="form.invalid" expand="block" (click)="this.login(form)">Iniciar sesión</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>
+  <ion-list class="lista">
+
+
+  <br>
+  <ion-button class="btnLista ion-text-center" (click)="cargarForm('admin@admin.com','111111')" readonly>Admin</ion-button>
+  <br>
+  <ion-button class="btnLista ion-text-center" (click)="cargarForm('usuario@usuario.com','333333')" readonly>Usuario</ion-button>
+  <br>
+  <ion-button class="btnLista ion-text-center" (click)="cargarForm('invitado@invitado.com','222222')" readonly>Invitado</ion-button>
+
+  </ion-list>
+
+
+
+
+  </ion-content>

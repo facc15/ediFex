@@ -1,0 +1,64 @@
+<!--menu section    -->
+<!--
+<ion-menu contentId="main-content" >
+  <ion-header>
+
+  </ion-header>
+
+</ion-menu>
+-->
+<ion-menu contentId="main-content" *ngIf="!this.spinner">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-text class="subtitle ion-text-center"> {{this.firebase.userLog.email}}</ion-text>
+    </ion-toolbar>
+  </ion-header>
+    <ion-content [fullscreen]="true" color="tertiary">
+      <div class="out">
+        <span (click)="this.userLogout()" style="color: #f3f0ec; font-family: 'Shadows Into Light', cursive; font-size: 30px; margin-left: 35px; margin-top: 5px;">Cerrar sesión</span>
+        <span (click)="this.userLogout()" style="margin-right: 10px; margin-top: 5px;"> <ion-icon style=" float: right; margin-top: 10px; height: 30px; width: 30px;" name="airplane-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="out" *ngIf="this.value && !this.chartOn">
+        <span (click)="this.seeChart(this.value)" style="color: #f3f0ec; font-family: 'Shadows Into Light', cursive; font-size: 30px; margin-left: 35px;">Ver gráficos</span>
+        <span (click)="this.seeChart(this.value)"> <ion-icon   style=" float: right;  margin-top: 10px;height: 30px; width: 30px;" name="stats-chart-outline"></ion-icon>
+        </span>
+
+      </div>
+
+      <div class="out" *ngIf="this.value && this.chartOn">
+        <span (click)="this.seePhotos()" style="color: #f3f0ec; font-family: 'Shadows Into Light', cursive; font-size: 30px; margin-left: 35px;">Ver fotos</span>
+        <span (click)="this.seePhotos()"> <ion-icon   style=" float: right;  margin-top: 10px;height: 30px; width: 30px;" name="camera-outline"></ion-icon>
+        </span>
+
+      </div>
+    </ion-content>
+</ion-menu>
+<!--content section   -->
+<div class="ion-page" id="main-content">
+  <ion-header *ngIf="!this.spinner">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-text class="ion-text-center" > <h2 class="title"> EdiFex </h2></ion-text>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true" color="tertiary" *ngIf="!this.spinner">
+
+    <div *ngIf="!this.list && !this.spinner">
+      <app-options [firebase]="this.firebase" (eventChoice)="chosenOption($event)"></app-options>
+    </div>
+
+    <div *ngIf="this.list && !this.chartOn">
+      <app-things [firebase]="this.firebase" [value]="this.value"></app-things>
+    </div>
+
+    <div *ngIf="this.chartOn">
+      <app-chart [chart]="this.chart"  [firebaseService]="this.firebase" [photos]="this.photos"> </app-chart>
+    </div>
+
+
+  </ion-content>
+</div>
+  <app-spinner [spinner]="this.spinner" *ngIf="this.spinner"></app-spinner>

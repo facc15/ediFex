@@ -1,0 +1,59 @@
+.name{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.photos{
+  width: 100%;
+  overflow-y: scroll;
+  height: 67vh;
+  border: #e4e2df 12px outset;
+}
+
+ion-title{
+  border: #e4e2df 12px outset;
+}
+
+.message-green{
+color: #256868;
+background-color: #e4e2df;
+margin-top: 5px;
+font-size: 30px;
+font-weight: bold;
+font-family: 'Shadows Into Light', cursive;
+}
+
+.message-red{
+  color: #7c222e;
+  background-color:  #e4e2df;
+  margin-top: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+
+
+
+
+.date{
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'Shadows Into Light', cursive;
+}
+.btn{
+    height: 20px;
+}
+
+.btn2{
+    height: 80px;
+}
+.camera{
+    height: 30;
+    width: 40;
+}
+
+ion-fab {
+    margin-bottom: var(--ion-safe-area-bottom, 0);
+  }

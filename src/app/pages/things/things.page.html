@@ -1,0 +1,48 @@
+ <!--
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let photo of this.photos">
+        <ion-card>
+          <ion-img [src]="photo.url"></ion-img>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+-->
+<app-spinner [spinner]="this.spinner"      *ngIf="this.spinner"></app-spinner>
+<ion-title   [ngClass]="{'message-green': this.value === 'pretty'}" class=ion-text-center *ngIf="this.value==='pretty' && !this.spinner">Ingrese las fotos lindas</ion-title>
+<ion-title   [ngClass]="{'message-red': this.value === 'ugly'}"  class=ion-text-center *ngIf="this.value==='ugly' && !this.spinner">Ingrese las fotos feas</ion-title>
+  <ion-list *ngIf="!this.spinner" class="photos">
+    <ion-item *ngFor="let photo of this.photos">
+
+        <img [src]="photo.url" height="130px" width="140px">
+
+      <ion-label style="margin-left: 5px;">
+        <h2 class="name">{{ photo.name }}</h2>
+        <p style="font-size: 15px;"><img  src="../../../assets/heart.png" height="15px" width="15px" alt=""> {{ photo.likes }}</p>
+      <p class="date">{{photo.date.day}}/{{photo.date.month}}/{{photo.date.year}}</p>
+      <p class="date">{{photo.date.fullHour.hour}}:{{photo.date.fullHour.minute}} hs.</p>
+    </ion-label>
+<br>
+<div>
+  <ion-button class="btn" (click)="likePhoto(photo)">
+    <ion-icon name="thumbs-up" *ngIf="!photo.userLiked"></ion-icon>
+    <ion-icon name="thumbs-down" *ngIf="photo.userLiked"></ion-icon>
+   <span style="margin-left: 4px; font-size: 10px; font-family: 'Shadows Into Light', cursive;"> {{ this.checkLike(photo) ? 'No me gusta' : 'Me gusta' }}</span>
+  </ion-button>
+</div>
+    </ion-item>
+  </ion-list>
+<!--
+<ion-button class="btn2" expand="block"   >
+
+</ion-button>
+-->
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="center" *ngIf="!this.spinner">
+      <ion-fab-button class="camera" (click)="takePhoto()">
+        <ion-icon style="height: 30px;" name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+
